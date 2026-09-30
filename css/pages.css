@@ -1,0 +1,295 @@
+/* Colour theme: LSU Health New Orleans purple and gold. */
+/* GeoSENSE Lab: styles for the section pages (News, In the Media, Projects, Tools).
+ * Loaded in index.html right after style.css, and uses the colour variables defined there
+ * (--ink, --muted, --water). Two extra variables used only by these pages are defined below. */
+
+:root {
+  --rule: #E4DEEA;   /* light divider lines between items */
+  --card: #FFFFFF;   /* card background (Tools) */
+}
+
+/* ============================== News (news.html) ============================== */
+  .nw-list { border-top: 2px solid var(--ink); }
+  .nw-item { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1.5rem;
+               padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+  .nw-date { color: var(--muted); font-size: 1rem; line-height: 1.3;
+               border-left: 4px solid var(--water); padding-left: .75rem; }
+  .nw-date strong { display: block; color: var(--ink); font-size: 1.35rem; }
+  .nw-item h4 { font-size: 1.15rem; line-height: 1.35; margin: 0 0 .5rem; }
+  .nw-item p { margin: 0 0 .6rem; max-width: 70ch; }
+  .nw-item img { display: block; max-width: 100%; width: 420px; height: auto; border-radius: 6px; margin: .4rem 0 .7rem; }
+  .nw-more { font-weight: 600; }
+  @media (max-width: 640px) {
+    .nw-item { grid-template-columns: 1fr; gap: .5rem; }
+    .nw-date strong { display: inline; font-size: 1rem; margin-right: .3rem; }
+  }
+
+/* ============================== In the Media (media.html) ============================== */
+  .md-group {
+    margin: 0 0 3rem;
+  }
+  .md-group > h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.9rem;
+  }
+  .md-list {
+    border-top: 2px solid var(--ink);
+  }
+  .md-item {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .md-date {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.3;
+    border-left: 4px solid var(--water);
+    padding-left: 0.75rem;
+  }
+  .md-date strong {
+    display: block;
+    color: var(--ink);
+    font-size: 1.35rem;
+  }
+  .md-item h4 {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin: 0 0 0.25rem;
+  }
+  .md-source {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0 0 0.75rem;
+  }
+  .md-item p {
+    margin: 0 0 0.6rem;
+    max-width: 70ch;
+  }
+  .md-video {
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin: 0.2rem 0 0.8rem;
+    background: var(--ink);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .md-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .md-item img {
+    display: block;
+    max-width: 100%;
+    width: 420px;
+    height: auto;
+    border-radius: 6px;
+    margin: 0.2rem 0 0.8rem;
+  }
+  .md-item img.md-cover {
+    width: 220px;
+    border: 1px solid var(--rule);
+  }
+  .md-links a {
+    display: inline-block;
+    margin-right: 1.25rem;
+  }
+  .md-more {
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .md-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .md-date strong {
+      display: inline;
+      font-size: 1rem;
+      margin-right: 0.3rem;
+    }
+  }
+
+/* ============================== Projects (projects.html) ============================== */
+  .proj {
+          --p-env: #1F6F6B; --p-sus: #5B7F2A; --p-pub: #7A3B69; }
+  .proj h3.proj-group { font-size: 1.5rem; margin: 2.5rem 0 .5rem; padding-bottom: .5rem;
+                        border-bottom: 2px solid var(--ink); }
+
+  /* Theme filter (pure CSS: radio buttons styled as pills, no script needed) */
+  .proj-filter-input { position: absolute; opacity: 0; pointer-events: none; }
+  .proj-filter { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+  .proj-filter label { font-size: .9rem; font-weight: 500; padding: .4rem .9rem; cursor: pointer;
+                       border: 1.5px solid var(--ink); border-radius: 999px; color: var(--ink); }
+  #pf-all:checked ~ .proj-filter label[for="pf-all"],
+  #pf-env:checked ~ .proj-filter label[for="pf-env"],
+  #pf-sus:checked ~ .proj-filter label[for="pf-sus"],
+  #pf-pub:checked ~ .proj-filter label[for="pf-pub"] { background: var(--ink); color: #fff; }
+  .proj-filter-input:focus-visible ~ .proj-filter label { outline: none; }
+  #pf-all:focus-visible ~ .proj-filter label[for="pf-all"],
+  #pf-env:focus-visible ~ .proj-filter label[for="pf-env"],
+  #pf-sus:focus-visible ~ .proj-filter label[for="pf-sus"],
+  #pf-pub:focus-visible ~ .proj-filter label[for="pf-pub"] { outline: 3px solid var(--p-env); outline-offset: 2px; }
+  #pf-env:checked ~ .proj-list .proj-item:not(.t-env),
+  #pf-sus:checked ~ .proj-list .proj-item:not(.t-sus),
+  #pf-pub:checked ~ .proj-list .proj-item:not(.t-pub) { display: none; }
+
+  /* Project entry: dates on the left, details on the right */
+  .proj-item { display: grid; grid-template-columns: 9rem 1fr; gap: 1.5rem;
+               padding: 1.5rem 0; border-bottom: 1px solid var(--rule); }
+  .proj-dates { color: var(--muted); font-size: 1.02rem; line-height: 1.35;
+                border-left: 4px solid var(--c, var(--ink)); padding-left: .75rem; }
+  .proj-item h4 { font-size: 1.15rem; line-height: 1.35; margin: 0 0 .6rem; }
+  .proj-meta { display: grid; grid-template-columns: max-content 1fr; gap: .15rem 1rem;
+               margin: 0 0 .75rem; font-size: .93rem; }
+  .proj-meta dt { color: var(--muted); }
+  .proj-meta dd { margin: 0; }
+  .proj-summary { margin: 0 0 .75rem; max-width: 70ch; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .proj-tag { font-size: .8rem; font-weight: 500; padding: .15rem .6rem; border-radius: 4px; color: #fff; }
+  .proj-tag.env { background: var(--p-env); }
+  .proj-tag.sus { background: var(--p-sus); }
+  .proj-tag.pub { background: var(--p-pub); }
+  .proj-todo { background: #FFF1B8; padding: 0 .25rem; }
+  /* Project map (separate page, embedded) */
+  .proj-map { margin: 0 0 2rem; }
+  .proj-map iframe { display: block; width: 100%; height: 480px; border: 1px solid var(--rule); border-radius: 6px; }
+
+  /* Related publications (collapsible) */
+  .proj-pubs { margin-top: .9rem; font-size: .93rem; }
+  .proj-pubs summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+  .proj-pubs summary:focus-visible { outline: 3px solid var(--p-env); outline-offset: 2px; }
+  .proj-pubs ul { margin: .5rem 0 0; padding-left: 1.2rem; }
+  .proj-pubs li { margin-bottom: .4rem; }
+
+  @media (max-width: 640px) {
+    .proj-item { grid-template-columns: 1fr; gap: .6rem; }
+    .proj-map iframe { height: 340px; }
+  }
+
+/* ============================== Tools (tools.html) ============================== */
+  .tl-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .tl-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--water);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .tl-shot {
+    position: relative;
+    aspect-ratio: 8 / 5;
+    background: #eef3f6;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tl-shot img,
+  .tl-shot svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tl-status {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .tl-soon { background: var(--ink); color: #fff; }
+  .tl-live { background: #2e7d4f; color: #fff; }
+  .tl-beta { background: #b7791f; color: #fff; }
+  .tl-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem 1.35rem 1.4rem;
+  }
+  .tl-body h3 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    margin: 0 0 0.15rem;
+  }
+  .tl-short {
+    color: var(--water);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin: 0 0 0.7rem;
+  }
+  .tl-body p {
+    margin: 0 0 0.9rem;
+  }
+  .tl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    list-style: none;
+  }
+  .tl-tags li {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+  .tl-actions {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .tl-btn {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    border-radius: 4px;
+    background: var(--water);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .tl-btn:hover { background: var(--ink); color: #fff; }
+  .tl-btn[aria-disabled="true"] {
+    background: transparent;
+    color: var(--muted);
+    border: 1px dashed var(--muted);
+    cursor: default;
+  }
+  .tl-link { font-weight: 600; }
+  /* Wide screens: rectangular card, preview on the left, text on the right */
+  @media (min-width: 760px) {
+    .tl-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    }
+    .tl-shot {
+      aspect-ratio: auto;
+      min-height: 100%;
+      border-bottom: 0;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+    }
+    .tl-shot img {
+      height: auto;
+    }
+    .tl-body {
+      padding: 1.75rem 2rem;
+    }
+  }

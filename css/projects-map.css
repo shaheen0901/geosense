@@ -1,0 +1,46 @@
+/* Colour theme: LSU Health New Orleans purple and gold. */
+/* GeoSENSE Lab: styles for the project-locations map (pages/projects-map.html).
+ * This page is shown inside a frame on the Projects page. */
+
+  html, body { height: 100%; margin: 0; }
+  body { font: 400 14px/1.45 "IBM Plex Sans", "Segoe UI", Arial, sans-serif; color: #2B1A3A; }
+  #map { height: 100%; width: 100%; background: #EEEBF2; }
+
+  /* Project circle + label */
+  .pm-proj { cursor: pointer; }
+  .pm-circle { width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%;
+               border: 3px solid #fff; box-shadow: 0 1px 4px rgba(43,26,58,.45); }
+  .pm-label { position: absolute; left: 31px; top: 3px; white-space: nowrap; color: #fff;
+              font-size: 12px; font-weight: 600; line-height: 20px; padding: 0 7px; border-radius: 4px;
+              box-shadow: 0 1px 3px rgba(43,26,58,.35); }
+  .pm-proj.past .pm-circle, .pm-proj.past .pm-label { opacity: .6; }
+  .pm-proj.active .pm-circle { transform: scale(1.2); box-shadow: 0 0 0 4px rgba(255,255,255,.7), 0 1px 6px rgba(43,26,58,.5); }
+  .pm-proj.active .pm-circle, .pm-proj.active .pm-label { opacity: 1; }
+  .pm-dim .pm-proj:not(.active) { opacity: .22; }
+  .pm-proj { transition: opacity .15s; }
+
+  /* Person icon */
+  .pm-person svg { width: 100%; height: 100%; display: block;
+                   filter: drop-shadow(0 1px 1.5px rgba(43,26,58,.5)); }
+
+  /* Panels */
+  .pm-box { background: #fff; padding: .55rem .75rem; border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(43,26,58,.25); font-size: 13px; }
+  .pm-info { width: 270px; max-height: 60vh; overflow-y: auto; }
+  .pm-info h4 { margin: 0 0 .25rem; font-size: 15px; line-height: 1.3; }
+  .pm-hint { color: #5E5667; margin: 0; }
+  .pm-sub { color: #5E5667; display: block; margin-bottom: .4rem; }
+  .pm-badge { display: inline-block; font-size: 11px; font-weight: 600; color: #fff;
+              padding: 0 .4rem; border-radius: 3px; margin-right: .35rem; background: #857C8F; }
+  .pm-badge.current { background: #1F6F6B; }
+  .pm-team { margin: 0; padding: 0; list-style: none; }
+  .pm-team li { display: flex; gap: .4rem; margin: .2rem 0; }
+  .pm-team svg { flex: 0 0 14px; width: 14px; height: 14px; margin-top: 2px; }
+  .pm-inst { color: #5E5667; }
+  .pm-legend div { display: flex; align-items: center; gap: .4rem; margin: .15rem 0; }
+  .pm-legend .pm-circle { width: 14px; height: 14px; border-width: 2px; background: #1F6F6B; box-shadow: 0 0 0 1px #D0C8D8; }
+  .pm-line { display: inline-block; width: 18px; height: 0; border-top: 2.5px solid #5E5667; }
+  .pm-line.col { border-top-style: dashed; }
+  .pm-error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+              padding: 1rem; text-align: center; background: #EEEBF2; z-index: 1000; }
+  @media (max-width: 520px) { .pm-info { width: 200px; max-height: 45vh; } .pm-label { display: none; } }

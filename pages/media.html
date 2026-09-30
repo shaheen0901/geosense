@@ -1,0 +1,195 @@
+<!-- GeoSENSE Lab: In the Media section.
+     This file is loaded into index.html when the "In the Media" tab opens, so it holds only the section
+     content (no <html>, <head>, or menu). Image and link paths are relative to index.html, so use
+     "images/..." (not "../images/...").
+
+     The page has three groups, in this order: News Coverage, Videos & Talks, Podcasts & Interviews.
+     TO ADD AN ITEM: copy the matching template at the bottom of this file, paste it at the TOP of the
+     right group (newest first), and edit it.
+     TO SHOW A GROUP that is still empty: delete the comment-start line above it (the one beginning with
+     the "less-than, exclamation mark, two dashes" marker) and the comment-end line below it (two dashes
+     followed by a greater-than sign).
+
+     YouTube videos: from a link like https://www.youtube.com/watch?v=ezNewE4HCdo, copy the part after
+     "v=" (here: ezNewE4HCdo) and put it after "embed/" in the iframe src.
+     Note: JavaScript placed inside this file does not run, so keep items plain HTML.  -->
+
+<div class="page-head">
+  <div class="wrap">
+    <h2>In the Media</h2>
+    <p>Talks, interviews, and news coverage.</p>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="wrap md">
+    <!-- News Coverage (newest first) -->
+
+    <section class="md-group">
+      <h3>News Coverage</h3>
+      <div class="md-list">
+        <article class="md-item">
+          <div class="md-date"><strong>Spring</strong>2025</div>
+          <div>
+            <h4>Cover story: Mapping dental deserts across the U.S.</h4>
+            <p class="md-source">
+              Harvard Dental magazine, Spring 2025 (Vol. 85, No. 1)
+            </p>
+            <img
+              class="md-cover"
+              src="images/harvarddental.png"
+              alt="Front cover of Harvard Dental magazine, Spring 2025, featuring the dental deserts cover story"
+            />
+            <p>
+              Our JAMA Network Open study on dental deserts was featured as the
+              cover story of Harvard Dental, the magazine of Harvard School of
+              Dental Medicine. Dr. Rahman is quoted on how the approach
+              identifies underserved areas missed by earlier studies.
+            </p>
+            <p class="md-links">
+              <a
+                class="md-more"
+                href="https://www.hsdm.harvard.edu/sites/g/files/omnuum6001/files/2025-11/HvD_magazine_spring2025_web2.pdf"
+                target="_blank"
+                rel="noopener"
+                >Read the magazine (PDF, p. 12)</a
+              >
+              <a
+                class="md-more"
+                href="https://www.hsdm.harvard.edu/news/mapping-dental-deserts-us"
+                target="_blank"
+                rel="noopener"
+                >Read online</a
+              >
+            </p>
+          </div>
+        </article>
+
+        <article class="md-item">
+          <div class="md-date"><strong>Jan 22</strong>2025</div>
+          <div>
+            <h4>New study maps the 'dental deserts' in the U.S.</h4>
+            <p class="md-source">Harvard Gazette</p>
+            <p>
+              The Harvard Gazette covered our JAMA Network Open study mapping
+              spatial access to dental clinics across the U.S. at the census
+              block group level, which found about 1.7 million people living in
+              dental deserts. Dr. Rahman is quoted on how the approach
+              identifies underserved areas missed by earlier studies.
+            </p>
+            <a
+              class="md-more"
+              href="https://news.harvard.edu/gazette/story/2025/01/new-study-maps-the-dental-deserts-in-the-u-s/"
+              target="_blank"
+              rel="noopener"
+              >Read the article</a
+            >
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- ===================== Videos & Talks (newest first) ===================== -->
+    <section class="md-group">
+      <h3>Videos &amp; Talks</h3>
+      <div class="md-list">
+        <article class="md-item">
+          <div class="md-date"><strong>Jul 4</strong>2019</div>
+          <div>
+            <h4>
+              Tropical Cyclone Hazard to Remote Home for the Rohingya at Bhasan
+              Char in Bangladesh
+            </h4>
+            <p class="md-source">
+              International Conference on the Rohingya Crisis in Comparative
+              Perspective at University College London (UCL)
+            </p>
+            <div class="md-video">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/ezNewE4HCdo"
+                title="Tropical Cyclone Hazard to Remote Home for the Rohingya at Bhasan Char in Bangladesh"
+                loading="lazy"
+                allow="
+                  accelerometer;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p>
+              Dr. Rahman delivering an invited presentation at the International
+              Conference on the Rohingya Crisis in Comparative Perspective at
+              University College London (UCL), discussing the hazard risks
+              associated with relocating Rohingya refugees to Bhasan Char,
+              Bangladesh.
+            </p>
+            <a
+              class="md-more"
+              href="https://www.youtube.com/watch?v=ezNewE4HCdo"
+              target="_blank"
+              rel="noopener"
+              >Watch on YouTube</a
+            >
+          </div>
+        </article>
+      </div>
+    </section>
+
+    
+    <!-- ===================== Podcasts & Interviews (newest first) =====================
+    <section class="md-group">
+      <h3>Podcasts &amp; Interviews</h3>
+      <div class="md-list">
+        paste Podcast / Interview items here
+      </div>
+    </section>
+    -->
+
+    <!-- ===================== Templates: copy, paste into a group, edit =====================
+
+    VIDEO / TALK (YouTube):
+    <article class="md-item">
+      <div class="md-date"><strong>Mon</strong>YYYY</div>
+      <div>
+        <h4>Talk title</h4>
+        <p class="md-source">Event or host name</p>
+        <div class="md-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                  title="Talk title" loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <p>One or two sentences on what the talk covers.</p>
+        <a class="md-more" href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" rel="noopener">Watch on YouTube</a>
+      </div>
+    </article>
+
+    NEWS ARTICLE (image line is optional; delete it if not needed):
+    <article class="md-item">
+      <div class="md-date"><strong>Mon</strong>YYYY</div>
+      <div>
+        <h4>Headline of the article</h4>
+        <p class="md-source">Outlet name</p>
+        <img src="images/photo.jpg" alt="Describe the photo">
+        <p>One or two sentences on how the article features the lab's work.</p>
+        <a class="md-more" href="https://..." target="_blank" rel="noopener">Read the article</a>
+      </div>
+    </article>
+
+    PODCAST / INTERVIEW:
+    <article class="md-item">
+      <div class="md-date"><strong>Mon</strong>YYYY</div>
+      <div>
+        <h4>Episode or interview title</h4>
+        <p class="md-source">Podcast, radio, or TV program name</p>
+        <p>One or two sentences on the topic.</p>
+        <a class="md-more" href="https://..." target="_blank" rel="noopener">Listen</a>
+      </div>
+    </article>
+    -->
+  </div>
+</div>

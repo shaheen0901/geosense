@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- GeoSENSE Lab: project locations and project teams.
+     Embedded in the Projects section with an <iframe>.
+     Data (paths relative to this page):
+       ../resources/projects.csv               one row per project
+            required: id, short_title, status (current|past), location, lat, lon, start, end, funder
+            optional: label (short name shown next to the circle), color (hex, e.g. #1F6F6B)
+       ../resources/project_collaborators.csv  one row per person per project
+            project_id, name, role, institution, lat, lon   (lat/lon = the person's institution)
+     Each project is a circle. Hovering or tapping it draws curved links from the project to a
+     person icon at each team member's institution. Click empty map space to clear. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project locations and teams | GeoSENSE Lab</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="../css/projects-map.css">
+</head>
+<body>
+<div id="map"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+  var PALETTE = ['#1F6F6B', '#7A3B69', '#B7791F', '#2F5D8A', '#A23E48', '#5B7F2A', '#6B4FA0', '#8A5A2B', '#0E7490', '#9D174D'];
+  var PERSON_PX = 30;          // person icon size
+  var STACK_PX = 34;           // vertical spacing between projects at the same location
+
+  var map = L.map('map', { worldCopyJump: true, scrollWheelZoom: false, zoomSnap: 0.25 }).setView([30, 0], 2);
+  // Esri Light Gray Canvas: free, no API key required
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 16, attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+  }).addTo(map);
+  var netLayer = L.layerGroup().addTo(map);
+
+  function esc(s) {
+    return String(s || '').replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function isInvestigator(role) { return /\b(PI|Co-?I|Investigator|Senior Personnel)\b/i.test(role || ''); }
+  function statusOf(p) { return (p.status || '').trim().toLowerCase() === 'current' ? 'current' : 'past'; }
+  function personSvg(color, outlined) {
+    var fill = outlined ? '#fff' : color;
+    return '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+           '<circle cx="12" cy="7" r="4.6" fill="' + fill + '" stroke="' + (outlined ? color : '#fff') + '" stroke-width="1.6"/>' +
+           '<path d="M3.2 22.5c0-5.3 3.9-9 8.8-9s8.8 3.7 8.8 9z" fill="' + fill + '" stroke="' + (outlined ? color : '#fff') + '" stroke-width="1.6"/></svg>';
+  }
+
+  /* Team panel */
+  var DEFAULT_INFO = '<h4>Project teams</h4><p class="pm-hint">Hover over a project circle to see its investigators and collaborators. Click or tap it to zoom to the team; click empty map space to reset.</p>';
+  var info = L.control({ position: 'topright' });
+  info.onAdd = function () {
+    this._div = L.DomUtil.create('div', 'pm-box pm-info');
+    L.DomEvent.disableClickPropagation(this._div);
+    L.DomEvent.disableScrollPropagation(this._div);
+    this._div.innerHTML = DEFAULT_INFO;
+    return this._div;
+  };
+  info.addTo(map);
+
+  /* Legend */
+  var legend = L.control({ position: 'bottomleft' });
+  legend.onAdd = function () {
+    var d = L.DomUtil.create('div', 'pm-box pm-legend');
+    d.innerHTML =
+      '<div><span class="pm-circle"></span>Current project</div>' +
+      '<div><span class="pm-circle" style="opacity:.55"></span>Past project</div>' +
+      '<div><span style="width:16px;height:16px;display:inline-block">' + personSvg('#5E5667') + '</span>Investigator</div>' +
+      '<div><span style="width:16px;height:16px;display:inline-block">' + personSvg('#5E5667', true) + '</span>Collaborator</div>' +
+      '<div><span class="pm-line"></span>Link to investigator</div>' +
+      '<div><span class="pm-line col"></span>Link to collaborator</div>';
+    return d;
+  };
+  legend.addTo(map);
+
+  var team = {};             // project_id -> [people]
+  var active = null;         // project currently shown
+  var projMarkers = {};      // project id -> marker
+  var homeBounds = null;     // starting view, restored when the map is reset
+
+  /* Curved link drawn in screen space so it looks the same at every zoom */
+  function arcLatLngs(a, b) {
+    var dx = b.x - a.x, dy = b.y - a.y;
+    var ctrl = L.point((a.x + b.x) / 2 - dy * 0.22, (a.y + b.y) / 2 + dx * 0.22);
+    var pts = [];
+    for (var i = 0; i <= 48; i++) {
+      var t = i / 48, u = 1 - t;
+      pts.push(map.layerPointToLatLng(L.point(
+        u * u * a.x + 2 * u * t * ctrl.x + t * t * b.x,
+        u * u * a.y + 2 * u * t * ctrl.y + t * t * b.y)));
+    }
+    return pts;
+  }
+
+  function drawNetwork(p) {
+    netLayer.clearLayers();
+    var origin = map.latLngToLayerPoint([p.lat, p.lon]).add(L.point(p.offset));
+    var people = (team[p.id] || []).filter(function (m) { return !isNaN(parseFloat(m.lat)) && !isNaN(parseFloat(m.lon)); });
+
+    // People whose institution is on top of the project circle go in one ring around it;
+    // people sharing another institution are fanned out in a small ring at that institution.
+    var near = [], far = {};
+    people.forEach(function (m) {
+      var pt = map.latLngToLayerPoint([parseFloat(m.lat), parseFloat(m.lon)]);
+      if (pt.distanceTo(origin) < 60) { near.push(m); return; }
+      // people within ~24 px of each other (e.g. Tulane and LSUHSC) share one fan-out ring
+      var k = Object.keys(far).filter(function (key) { return far[key].pt.distanceTo(pt) < 24; })[0];
+      if (!k) { k = 'g' + Object.keys(far).length; far[k] = { pt: pt, list: [] }; }
+      far[k].list.push(m);
+    });
+
+    var placed = [];
+    if (near.length) {
+      var R = Math.max(70, near.length * 14);
+      near.forEach(function (m, i) {
+        // spread around the circle but keep clear of the label on the right (east)
+        var a0 = 55 * Math.PI / 180, a1 = 305 * Math.PI / 180;
+        var ang = near.length === 1 ? Math.PI * 0.75 : a0 + (a1 - a0) * i / (near.length - 1);
+        placed.push({ m: m, pt: origin.add(L.point(R * Math.cos(ang), R * Math.sin(ang))) });
+      });
+    }
+    Object.keys(far).forEach(function (k) {
+      var g = far[k], n = g.list.length, r = n > 1 ? 14 + 5 * n : 0;
+      g.list.forEach(function (m, i) {
+        var ang = -Math.PI / 2 + 2 * Math.PI * i / n;
+        placed.push({ m: m, pt: g.pt.add(L.point(r * Math.cos(ang), r * Math.sin(ang))) });
+      });
+    });
+
+    placed.forEach(function (e) {
+      var inv = isInvestigator(e.m.role);
+      L.polyline(arcLatLngs(origin, e.pt), {
+        color: p.color, weight: 2.4, opacity: 0.8, dashArray: inv ? null : '7 6', interactive: false
+      }).addTo(netLayer);
+    });
+    placed.forEach(function (e) {
+      var inv = isInvestigator(e.m.role);
+      L.marker(map.layerPointToLatLng(e.pt), {
+        icon: L.divIcon({ className: 'pm-person', html: personSvg(p.color, !inv),
+                          iconSize: [PERSON_PX, PERSON_PX], iconAnchor: [PERSON_PX / 2, PERSON_PX / 2] }),
+        bubblingMouseEvents: false, keyboard: false, zIndexOffset: 2000
+      }).bindTooltip('<strong>' + esc(e.m.name) + '</strong><br>' + esc(e.m.role) +
+                     (e.m.institution ? ', ' + esc(e.m.institution) : ''), { direction: 'top', offset: [0, -12] })
+        .addTo(netLayer);
+    });
+  }
+
+  function showProject(p) {
+    if (active && active.id === p.id) return;
+    if (active && projMarkers[active.id]) L.DomUtil.removeClass(projMarkers[active.id].getElement(), 'active');
+    active = p;
+    L.DomUtil.addClass(projMarkers[p.id].getElement(), 'active');
+    L.DomUtil.addClass(map.getContainer(), 'pm-dim');
+    drawNetwork(p);
+
+    var st = statusOf(p), people = (team[p.id] || []).slice()
+      .sort(function (a, b) { return isInvestigator(b.role) - isInvestigator(a.role); });
+    var html = '<h4>' + esc(p.short_title) + '</h4>' +
+      '<span class="pm-sub"><span class="pm-badge ' + st + '">' + (st === 'current' ? 'Current' : 'Past') + '</span>' +
+      esc(p.start) + ' – ' + esc(p.end) + ', ' + esc(p.funder) + '<br>' + esc(p.location) + '</span>';
+    html += people.length
+      ? '<ul class="pm-team">' + people.map(function (m) {
+          return '<li>' + personSvg(p.color, !isInvestigator(m.role)) + '<span>' + esc(m.name) +
+                 ' <span class="pm-inst">(' + esc(m.role) + (m.institution ? ', ' + esc(m.institution) : '') + ')</span></span></li>';
+        }).join('') + '</ul>'
+      : '<p class="pm-hint">Team details coming soon.</p>';
+    info._div.innerHTML = html;
+    info._div.scrollTop = 0;
+  }
+
+  // Clicking (or tapping) a project zooms to fit it and its team
+  function zoomToTeam(p) {
+    var pts = [[p.lat, p.lon]];
+    (team[p.id] || []).forEach(function (m) {
+      var la = parseFloat(m.lat), lo = parseFloat(m.lon);
+      if (!isNaN(la) && !isNaN(lo)) pts.push([la, lo]);
+    });
+    map.fitBounds(L.latLngBounds(pts).pad(0.25), {
+      paddingTopLeft: [60, 80], paddingBottomRight: [window.innerWidth > 600 ? 330 : 60, 80], maxZoom: 9
+    });
+  }
+
+  function clearProject() {
+    if (active && projMarkers[active.id]) L.DomUtil.removeClass(projMarkers[active.id].getElement(), 'active');
+    active = null;
+    L.DomUtil.removeClass(map.getContainer(), 'pm-dim');
+    netLayer.clearLayers();
+    info._div.innerHTML = DEFAULT_INFO;
+    if (homeBounds) map.fitBounds(homeBounds.bounds, homeBounds.opts);
+  }
+
+  /* Projects that would overlap at the current zoom (e.g. Dhaka and Chittagong) are stacked in a
+     neat vertical column so each keeps its own circle and label. Re-run after every zoom. */
+  function layoutProjects(projects) {
+    var stacks = [];
+    projects.forEach(function (p) {
+      var pt = map.latLngToLayerPoint([p.lat, p.lon]);
+      var s = stacks.filter(function (st) { return st.pt.distanceTo(pt) < 40; })[0];
+      if (s) s.list.push({ p: p, pt: pt }); else stacks.push({ pt: pt, list: [{ p: p, pt: pt }] });
+    });
+    function half(st) { return (st.list.length - 1) / 2 * STACK_PX + STACK_PX / 2; }
+    for (var pass = 0; pass < 20; pass++) {
+      var moved = false;
+      stacks.sort(function (a, b) { return a.pt.y - b.pt.y; });
+      for (var i = 0; i < stacks.length; i++) for (var j = i + 1; j < stacks.length; j++) {
+        var a = stacks[i], b = stacks[j];
+        if (Math.abs(a.pt.x - b.pt.x) > 170) continue;
+        var overlap = (half(a) + half(b)) - (b.pt.y - a.pt.y);
+        if (overlap > 0) {
+          a.pt = a.pt.subtract(L.point(0, overlap / 2 + 1));
+          b.pt = b.pt.add(L.point(0, overlap / 2 + 1));
+          moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+    stacks.forEach(function (st) {
+      var n = st.list.length;
+      st.list.forEach(function (e, i) {
+        var p = e.p;
+        p.offset = [st.pt.x - e.pt.x, st.pt.y - e.pt.y + (i - (n - 1) / 2) * STACK_PX];
+        projMarkers[p.id].setIcon(L.divIcon({
+          className: 'pm-proj ' + statusOf(p) + (active && active.id === p.id ? ' active' : ''),
+          html: '<div class="pm-circle" style="background:' + p.color + '"></div>' +
+                '<span class="pm-label" style="background:' + p.color + '">' + esc(p.label) + '</span>',
+          iconSize: [26, 26], iconAnchor: [13 - p.offset[0], 13 - p.offset[1]]
+        }));
+      });
+    });
+    if (active) drawNetwork(active);
+  }
+
+  function build(projects, people) {
+    people.forEach(function (m) { if (m.project_id) (team[m.project_id] = team[m.project_id] || []).push(m); });
+
+    projects = projects.filter(function (p, i) {
+      p.lat = parseFloat(p.lat); p.lon = parseFloat(p.lon);
+      p.color = (p.color || '').trim() || PALETTE[i % PALETTE.length];
+      p.label = (p.label || '').trim() || p.short_title;
+      return !isNaN(p.lat) && !isNaN(p.lon);
+    });
+    if (!projects.length) return;
+
+    homeBounds = {
+      bounds: L.latLngBounds(projects.map(function (p) { return [p.lat, p.lon]; })).pad(0.15),
+      opts: { paddingTopLeft: [30, 60], paddingBottomRight: [window.innerWidth > 600 ? 320 : 30, 60] }
+    };
+    map.fitBounds(homeBounds.bounds, L.extend({ animate: false }, homeBounds.opts));
+
+    projects.forEach(function (p) {
+      var m = L.marker([p.lat, p.lon], { zIndexOffset: 1000, bubblingMouseEvents: false, title: p.short_title });
+      m.on('mouseover', function () { showProject(p); });
+      m.on('click', function () { showProject(p); zoomToTeam(p); });
+      m.addTo(map);
+      projMarkers[p.id] = m;
+    });
+    layoutProjects(projects);
+    map.on('zoomend', function () { layoutProjects(projects); });
+
+    map.on('click', clearProject);
+  }
+
+  function load(url, optional) {
+    return new Promise(function (resolve, reject) {
+      Papa.parse(url, {
+        download: true, header: true, skipEmptyLines: true,
+        complete: function (r) { resolve(r.data); },
+        error: function (e) { optional ? resolve([]) : reject(e); }
+      });
+    });
+  }
+
+  Promise.all([load('../resources/projects.csv'), load('../resources/project_collaborators.csv', true)])
+    .then(function (d) { build(d[0], d[1]); })
+    .catch(function () {
+      var d = document.createElement('div');
+      d.className = 'pm-error';
+      d.textContent = 'Project locations could not be loaded. Check that resources/projects.csv exists and that the site is opened through a web server, not directly from the file system.';
+      document.body.appendChild(d);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+project_id,name,role,institution,lat,lon
+proj-scipp5,Dr. Barry Keim,Lead PI,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp5,Dr. Md Shahinoor Rahman,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp5,Dr. Scott Hemmerling,Co-I,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp5,Dr. Evrim Oral,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp4,Dr. Barry Keim,Lead PI,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp4,Dr. Scott Hemmerling,Co-I,LSU Health Sciences Center,29.9557,-90.077
+proj-scipp4,Dr. Md Shahinoor Rahman,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-greeen,Dr. Mahbubur Meenar,Lead PI,Rowan University,39.7087,-75.119
+proj-greeen,Dr. Deepti Adlakha,Institutional PI,North Carolina State University,35.7847,-78.6821
+proj-greeen,Dr. Ted Howell,Co-I,Rowan University,39.7087,-75.119
+proj-greeen,Dr. Md Shahinoor Rahman,Institutional PI,LSU Health Sciences Center,29.9557,-90.077
+proj-landslide,Dr. Md Shahinoor Rahman,Co-PI,LSU Health Sciences Center,29.9557,-90.077
+proj-landslide,Dr. Bayes Ahmed,Co-PI,University College London,51.5246,-0.134
+proj-landslide,Dr. Tahmeed Malik Al-Hussaini,Co-PI,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-heqep,Dr. Tahmeed Malik Al-Hussaini,Lead PI,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-heqep,Dr. Md Shahinoor Rahman,Co-I,LSU Health Sciences Center,29.9557,-90.077
+proj-heqep,Dr. Mohammad Shariful Islam,Co-I,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-urban-ag,Dr. Mahbubur Meenar,Lead PI,Rowan University,39.7087,-75.119
+proj-urban-ag,Dr. Md Shahinoor Rahman,Institutional PI,LSU Health Sciences Center,29.9557,-90.077
+proj-urban-ag,Dr. Asif Ishtiaque,Institutional PI,Missouri State University Springfield,37.1995,-93.2812
+proj-claiborne,Dr. Adrienne Katner,Lead PI,LSU Health Sciences Center,29.9557,-90.077
+proj-claiborne,Dr. Daniel J. Harrington,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-claiborne,Dr. Evrim Oral,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-claiborne,Dr. Md Shahinoor Rahman,Investigator,LSU Health Sciences Center,29.9557,-90.077
+proj-dhaka-heat,Dr. Mostafijur Rahman,Lead PI,Tulane University,29.94,-90.1207
+proj-dhaka-heat,Dr. Md Shahinoor Rahman,Institutional PI,LSU Health Sciences Center,29.9557,-90.077
+proj-dhaka-heat,Dr. Khandaker Shabbir Ahmed,Co-I,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-dhaka-heat,Dr. Sheikh Mokhlesur Rahman,Co-I,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-dhaka-heat,Dr. Nazmul Huda,Co-I,Bangladesh University of Engineering and Technology,23.7265,90.3925
+proj-dhaka-heat,Fatema Akhter,Co-I,Dhaka University,23.734,90.3928

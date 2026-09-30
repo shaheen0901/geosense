@@ -1,0 +1,364 @@
+<!doctype html>
+<!-- Colour theme: LSU Health New Orleans purple and gold. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      GeoSENSE Lab | Geospatial Science for Environment, Sustainability &amp;
+      Epidemiology
+    </title>
+    <meta
+      name="description"
+      content="GeoSENSE Lab at LSU Health Sciences Center School of Public Health uses satellite remote sensing, GIS, and machine learning to study how climate and the environment affect human health."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="wrap nav" aria-label="Main">
+        <a class="brand" href="#home" aria-label="GeoSENSE Lab, home"
+          ><span aria-hidden="true"
+            >Ge<svg
+              class="globe-o"
+              viewBox="0 0 62 100"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M4 44 Q34 4 66 40"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-dasharray="3 4"
+                opacity=".55"
+              />
+              <circle
+                cx="31"
+                cy="73"
+                r="21.5"
+                fill="#6B45A0"
+                stroke="currentColor"
+                stroke-width="11"
+              />
+              <ellipse
+                cx="31"
+                cy="73"
+                rx="16"
+                ry="6"
+                fill="none"
+                stroke="currentColor"
+                stroke-opacity=".45"
+                stroke-width="2"
+              />
+              <ellipse
+                cx="31"
+                cy="73"
+                rx="7"
+                ry="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-opacity=".45"
+                stroke-width="2"
+              />
+              <circle cx="37" cy="67" r="3.2" fill="#FDD023" />
+              <g transform="translate(50 26.7) rotate(28)">
+                <rect x="-14" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
+                <rect x="5" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
+                <rect x="-4" y="-4" width="8" height="8" fill="currentColor" />
+              </g></svg
+            >SENSE Lab</span
+          ><small>LSU Health New Orleans School of Public Health</small></a
+        >
+        <button class="menu-btn" aria-expanded="false" aria-controls="menu">
+          Menu
+        </button>
+        <ul id="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#people">People</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#media">In the Media</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <div class="page" id="page-home">
+        <section class="hero">
+          <canvas
+            id="geoanim"
+            role="img"
+            aria-label="A rotating globe showing the lab's study sites in Bangladesh, the Indian Ocean, and the United States, followed by a polar-orbiting satellite scanning the contiguous United States to build a land surface temperature map"
+          ></canvas>
+          <div class="hero-text">
+            <h1 aria-label="GeoSENSE Lab">
+              Ge<svg
+                class="globe-o"
+                viewBox="0 0 62 100"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M4 44 Q34 4 66 40"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-dasharray="3 4"
+                  opacity=".55"
+                />
+                <circle
+                  cx="31"
+                  cy="73"
+                  r="21.5"
+                  fill="#6B45A0"
+                  stroke="currentColor"
+                  stroke-width="11"
+                />
+                <ellipse
+                  cx="31"
+                  cy="73"
+                  rx="16"
+                  ry="6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-opacity=".45"
+                  stroke-width="2"
+                />
+                <ellipse
+                  cx="31"
+                  cy="73"
+                  rx="7"
+                  ry="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-opacity=".45"
+                  stroke-width="2"
+                />
+                <circle cx="37" cy="67" r="3.2" fill="#FDD023" />
+                <g transform="translate(50 26.7) rotate(28)">
+                  <rect
+                    x="-14"
+                    y="-2.6"
+                    width="9"
+                    height="5.2"
+                    fill="#A39AAC"
+                  />
+                  <rect x="5" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
+                  <rect
+                    x="-4"
+                    y="-4"
+                    width="8"
+                    height="8"
+                    fill="currentColor"
+                  />
+                </g></svg
+              >SENSE Lab
+            </h1>
+            <p class="full">
+              <b class="acr">Geo</b>spatial <b class="acr">S</b>cience for
+              <b class="acr">En</b>vironment, <b class="acr">S</b>ustainability
+              &amp; <b class="acr">E</b>pidemiology
+            </p>
+            <p class="lede">
+              Tracking how heat, flooding, and environmental change affect human
+              health, from satellite to community.
+            </p>
+            <p><a class="btn" href="#research">Explore our research</a></p>
+          </div>
+        </section>
+        <section class="about">
+          <div class="wrap">
+            <h2>About the lab</h2>
+            <p>
+              Welcome to the GeoSENSE Lab, based in the Department of
+              Environmental Health, Climate, and Sustainability at the School of
+              Public Health, LSU Health Sciences Center in New Orleans.
+            </p>
+            <p>
+              We are an interdisciplinary team working where earth observation
+              meets public health. By combining satellite imagery, geospatial
+              data, health records, and machine learning, we build exposure maps
+              and risk assessments that help public health agencies, planners,
+              and communities prepare for a changing climate. Our home on the
+              Gulf Coast shapes our questions: extreme heat, flooding, and
+              disaster risk are daily realities here.
+            </p>
+            <p>
+              Explore our <a href="#research">research</a>,
+              <a href="#projects">projects</a>, and
+              <a href="#capabilities">capabilities</a>, meet our
+              <a href="#people">people</a>, catch up on
+              <a href="#news">news</a>, or
+              <a href="#contact">get in touch</a> to join or collaborate with
+              us.
+            </p>
+            <p class="ack">
+              Our research has been supported by NASA, NIH, NSF, NOAA, USAID,
+              and the Wellcome Trust.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- RESEARCH: content lives in pages/research.html -->
+      <div
+        class="page"
+        id="page-research"
+        data-src="pages/research.html"
+        hidden
+      ></div>
+
+      <!-- PROJECTS: content lives in pages/projects.html -->
+      <div
+        class="page"
+        id="page-projects"
+        data-src="pages/projects.html"
+        hidden
+      ></div>
+      <!-- TOOLS -->
+      <div
+        class="page"
+        id="page-tools"
+        data-src="pages/tools.html"
+        hidden
+      ></div>
+      <!-- CAPABILITIES -->
+      <div class="page" id="page-capabilities" hidden>
+        <div class="page-head">
+          <div class="wrap">
+            <h2>Capabilities</h2>
+            <p>What we bring to collaborations and funded projects.</p>
+          </div>
+        </div>
+        <div class="page-body">
+          <div class="wrap caps">
+            <div>
+              <h3>Earth observation</h3>
+              <ul>
+                <li>Landsat, Sentinel-1/2, MODIS, and NASA TEMPO data</li>
+                <li>Multi-temporal image processing and compositing</li>
+                <li>Land surface temperature retrieval</li>
+              </ul>
+            </div>
+            <div>
+              <h3>GeoAI</h3>
+              <ul>
+                <li>Machine learning for land cover and environmental mapping</li>
+                <li>Deep learning for satellite and aerial image analysis</li>
+                <li>Spatiotemporal modeling of environmental exposures</li>
+                <li>Large-scale processing on high-performance computing</li>
+              </ul>
+            </div>
+            <div>
+              <h3>GIS and spatial analysis</h3>
+              <ul>
+                <li>Vulnerability and risk indices</li>
+                <li>Accessibility and network analysis</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Environmental epidemiology</h3>
+              <ul>
+                <li>Exposure assessment for health studies</li>
+                <li>Linking environmental and health data</li>
+                <li>Community-focused risk communication</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Decision-support tools</h3>
+              <ul>
+                <li>Interactive web maps for research communication</li>
+                <li>Web tools for exploring exposure and risk data</li>
+              </ul>
+              <p><a href="#tools">See our tools</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEOPLE: content lives in pages/people.html -->
+      <div
+        class="page"
+        id="page-people"
+        data-src="pages/people.html"
+        hidden
+      ></div>
+
+      <!-- NEWS: content lives in pages/news.html -->
+      <div class="page" id="page-news" data-src="pages/news.html" hidden></div>
+
+      <!-- IN THE MEDIA: content lives in pages/media.html -->
+      <div class="page" id="page-media" data-src="pages/media.html" hidden></div>
+
+      <!-- CONTACT -->
+      <div class="page" id="page-contact" hidden>
+        <div class="page-head">
+          <div class="wrap">
+            <h2>Contact</h2>
+
+            <p>We'd be glad to hear from you.</p>
+          </div>
+        </div>
+        <div class="page-body">
+          <div class="wrap">
+            <p>
+              We welcome motivated collaborators with interests in remote
+              sensing, GIS, machine learning, or environmental health.
+            </p>
+            <p>
+              To express interest, email Dr. Rahman with your CV, and a short
+              statement of your research interests.
+            </p>
+            <p>
+              <strong>GeoSENSE Lab</strong><br />Department of Environmental
+              Health, Climate, and Sustainability<br />School of Public Health,
+              LSU Health Sciences Center<br />New Orleans, Louisiana
+            </p>
+            <p><a href="mailto:mrahm8@lsuhsc.edu">mrahm8@lsuhsc.edu</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span
+          >&copy; <span id="yr">2026</span> GeoSENSE Lab, LSU Health New
+          Orleans</span
+        >
+        <span><a href="#contact">Contact</a></span>
+      </div>
+    </footer>
+    <script>
+      /* Resize the co-author map frame on the People page to fit its content */
+      window.addEventListener("message", function (e) {
+        var f = document.getElementById("collab-map-frame");
+        if (f && e.data && e.data.gcMapHeight)
+          f.style.height = e.data.gcMapHeight + "px";
+      });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/publications.js"></script>
+    <script src="js/pub-list.js"></script>
+    <script src="js/research-map.js"></script>
+    <script src="js/geoanim.js"></script>
+  </body>
+</html>

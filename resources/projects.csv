@@ -1,0 +1,9 @@
+id,short_title,status,location,lat,lon,start,end,funder,role,label,color
+proj-scipp5,SCIPP Phase 5: Preparedness and Resilience,current,"New Orleans, LA",29.9511,-90.0715,Sep 2026,Aug 2027,NOAA,Investigator,SCIPP 5,#1F6F6B
+proj-dhaka-heat,Exposing Hidden Heat in Dhaka,current,"Dhaka, Bangladesh",23.8103,90.4125,Jan 2026,Dec 2028,Wellcome,Institutional PI,Dhaka Heat,#A23E48
+proj-claiborne,Traffic-Related Air Pollution along Claiborne Avenue,past,"New Orleans, LA",29.9511,-90.0715,Jul 2024,Aug 2026,LSUHSC WIRP,Investigator,Claiborne,#7A3B69
+proj-urban-ag,Urban Agriculture–Environment Connection,current,New Jersey,40.0583,-74.4057,Jun 2024,May 2026,NASA,Institutional PI,Urban Ag,#5B7F2A
+proj-scipp4,SCIPP Phase IV: Planning for Long-Term Change,past,Southern United States,32.5,-94.5,Sep 2021,Aug 2026,NOAA,Investigator,SCIPP IV,#0E7490
+proj-greeen,From Green to GrEEEn: Greenspace Equity,past,"Jersey City, NJ",40.7282,-74.0776,Oct 2022,Dec 2023,NASA,Institutional PI,GrEEEn,#2F5D8A
+proj-heqep,Disaster Risk Reduction Graduate Programs,past,"Dhaka, Bangladesh",23.8103,90.4125,Jul 2014,Jun 2017,UGC Bangladesh (HEQEP),Co-Investigator,HEQEP,#B7791F
+proj-landslide,Landslide Early Warning System,past,"Chittagong, Bangladesh",22.3569,91.7832,Jul 2014,Jun 2015,ICIMOD/SERVIR-Himalaya (USAID & NASA),Co-PI,Landslide EWS,#6B4FA0

@@ -1,0 +1,39 @@
+<!-- GeoSENSE Lab: Research section.
+     Loaded into index.html when the Research tab opens (no <html>, <head>, or menu).
+     The map and theme list are filled in by js/research-map.js using data from js/publications.js.
+     Keep the ids "theme-list" and "pubmap" and the class names below: the script looks for them. -->
+<div class="page-head">
+  <div class="wrap">
+    <h2>Research</h2>
+    <p>Where environment, climate, and health meet.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="wrap wide">
+    <div class="research-grid">
+      <div class="theme-col">
+        <h3>Research themes</h3>
+        <p class="hint">
+          Hover a theme to highlight its studies on the map, or click to show only that theme.
+        </p>
+        <ul class="theme-list" id="theme-list"></ul>
+      </div>
+      <div class="map-col">
+        <div class="map-bar">
+          <h3>Where our published studies are</h3>
+        </div>
+        <div class="pubmap" id="pubmap">
+          <canvas aria-hidden="true"></canvas>
+          <div class="pins"></div>
+          <div class="pop" hidden></div>
+          <div class="zoom" role="group" aria-label="Map zoom">
+            <button type="button" class="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" class="zoom-out" aria-label="Zoom out">&minus;</button>
+            <button type="button" class="zoom-reset" aria-label="Show whole map">Reset</button>
+          </div>
+        </div>
+        <p class="hint">Hover or tap a point to see the study.</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dr. Rahman's Collaborators across the globe | GeoSENSE Lab</title>
+    <!-- Optional: link your site stylesheet here so fonts match the rest of the site, e.g.
+<link rel="stylesheet" href="../css/style.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+    />
+    <link rel="stylesheet" href="../css/collaborators-map.css" />
+  </head>
+  <body>
+    <section
+      id="gc-root"
+      class="gc"
+      aria-label="Dr. Rahman's Collaborators across the globe"
+    >
+      <div class="gc-bar">
+        <div class="gc-years" role="group" aria-label="Years shown">
+          <output id="gc-fromout" class="gc-yend" for="gc-from"></output>
+          <div class="gc-dual">
+            <div class="gc-track"></div>
+            <div class="gc-fill" id="gc-fill"></div>
+            <input id="gc-from" type="range" step="1" aria-label="Start year" />
+            <input id="gc-to" type="range" step="1" aria-label="End year" />
+          </div>
+          <output id="gc-toout" class="gc-yend" for="gc-to"></output>
+        </div>
+        <button id="gc-play" type="button">Play timeline</button>
+        <button id="gc-reset" type="button">Reset view</button>
+      </div>
+
+      <div
+        id="gc-map"
+        class="gc-map"
+        role="region"
+        aria-label="Interactive world map of Dr. Rahman's co-authors"
+      ></div>
+      <p class="gc-note gc-mapnote">
+        [Note: Each figure is a co-author, placed at the institution they were 
+        affiliated with when the work was published. Lines run to Dr. Rahman's
+        institution at that time and take its colour; thicker lines mean more
+        shared publications. Select a figure for details, scroll or pinch to
+        zoom.]
+      </p>
+      <p id="gc-stat" class="gc-stat" aria-live="polite"></p>
+
+      <p class="gc-legend-label" id="gc-homes-label">
+        Dr. Rahman's affiliation at the time of collaboration (sets line and
+        figure colour)
+      </p>
+      <ul id="gc-homes" class="gc-homes" aria-labelledby="gc-homes-label"></ul>
+      <p class="gc-legend-label" id="gc-legend-label">Show research themes</p>
+      <ul
+        id="gc-legend"
+        class="gc-legend"
+        aria-labelledby="gc-legend-label"
+      ></ul>
+      <div class="gc-keys">
+        <span class="gc-key" id="gc-headkey"></span>
+        <span class="gc-key"
+          ><svg width="30" height="6" aria-hidden="true">
+            <line
+              x1="1"
+              y1="3"
+              x2="29"
+              y2="3"
+              stroke="#555"
+              stroke-width="2"
+              stroke-dasharray="5 4"
+            /></svg
+          >Career path</span
+        >
+        <span class="gc-key" id="gc-widthkey"></span>
+      </div>
+      <p class="gc-note">
+        Themes are assigned per paper, so a co-author appears under every theme
+        they have published on with Dr. Rahman, and line width counts only the
+        papers matching the selected themes and years. Based on
+        <span id="gc-npubs"></span> co-authored publications (<span
+          id="gc-span"
+        ></span
+        >). Co-authors at the same or nearby institutions are fanned out around
+        that location; zoom in to separate them.
+      </p>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="../js/world-110m.js"></script>
+    <script src="../js/collaborators-map.js"></script>
+    <script>
+      /* Timespan shown after each institution in the "Dr. Rahman's affiliation" legend.
+         To change a timespan, edit it here. The name on the left only needs to match
+         part of the name shown in the legend. */
+      (function () {
+        var YEARS = {
+          "Universidad Austral de Chile": "2010–2011",
+          "Bangladesh University of Engineering and Technology": "2011–2015",
+          "George Mason University": "2015–2019",
+          "New Jersey City University": "2020–2023",
+          "Harvard School of Dental Medicine": "2023–2026",
+          "LSU Health Sciences Center": "2024–present",
+        };
+        var list = document.getElementById("gc-homes");
+        if (!list) return;
+        function addYears() {
+          Array.prototype.forEach.call(list.children, function (li) {
+            if (li.querySelector(".gc-years-tag")) return; // already added
+            var text = li.textContent;
+            for (var name in YEARS) {
+              if (text.indexOf(name) !== -1) {
+                var tag = document.createElement("span");
+                tag.className = "gc-years-tag";
+                tag.textContent = " [" + YEARS[name] + "]";
+                tag.style.opacity = "0.7";
+                tag.style.whiteSpace = "nowrap";
+                (li.querySelector("button, label") || li).appendChild(tag);
+                break;
+              }
+            }
+          });
+        }
+        // the legend is built (and may be rebuilt) by collaborators-map.js, so watch for it
+        new MutationObserver(addYears).observe(list, { childList: true });
+        addYears();
+      })();
+    </script>
+  </body>
+</html>

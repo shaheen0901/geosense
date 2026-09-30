@@ -1,0 +1,79 @@
+<!-- GeoSENSE Lab: Tools section.
+     This file is loaded into index.html when the Tools tab opens, so it holds only the section content
+     (no html, head, or menu). Image and link paths are relative to index.html, so use "images/..."
+     (not "../images/...").
+
+     Each tool is one card. TO ADD A TOOL: copy the template at the bottom of this file, paste it inside
+     the tl-grid block, and edit it. Put a screenshot in images/ (about 1200 x 750 px, 8:5).
+     WHEN A TOOL GOES LIVE: change the status label from "Coming soon" to "Live" (and the class tl-soon
+     to tl-live), swap the preview image for a screenshot of the live tool, and replace the disabled button with the
+     Launch link shown in the template.
+     Note: JavaScript placed inside this file does not run, so keep cards plain HTML.  -->
+
+<div class="page-head">
+  <div class="wrap">
+    <h2>Tools</h2>
+    <p>Web applications, dashboards, and open data from the lab.</p>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="wrap tl">
+    <div class="tl-grid">
+
+      <!-- ===================== HREP ===================== -->
+      <article class="tl-card">
+        <div class="tl-shot">
+          <img src="images/hrep-preview.svg" alt="Map of contiguous U.S. counties shaded by nitrogen dioxide level, with a daily NO2 chart">
+          <span class="tl-status tl-soon">Coming soon</span>
+        </div>
+        <div class="tl-body">
+          <h3>Health-Ready Exposure Platform</h3>
+          <p class="tl-short">HREP</p>
+          <p>
+            An interactive map of U.S. counties built on NASA TEMPO satellite
+            observations. Click a county to see its daily nitrogen dioxide
+            (NO&#8322;) time series, and select several counties to compare them.
+            Data will be updated monthly.
+          </p>
+          <ul class="tl-tags">
+            <li>Air quality</li>
+            <li>NO&#8322;</li>
+            <li>NASA TEMPO</li>
+            <li>U.S. counties</li>
+          </ul>
+          <div class="tl-actions">
+            <span class="tl-btn" aria-disabled="true">Launch: coming soon</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== Template: copy into the tl-grid block, then edit =====================
+
+      <article class="tl-card">
+        <div class="tl-shot">
+          <img src="images/TOOL.jpg" alt="Screenshot of TOOL NAME">
+          <span class="tl-status tl-live">Live</span>
+        </div>
+        <div class="tl-body">
+          <h3>Full tool name</h3>
+          <p class="tl-short">SHORT NAME</p>
+          <p>Two or three sentences: what the tool shows and what a visitor can do with it.</p>
+          <ul class="tl-tags">
+            <li>Theme</li>
+            <li>Data source</li>
+            <li>Coverage</li>
+          </ul>
+          <div class="tl-actions">
+            <a class="tl-btn" href="https://..." target="_blank" rel="noopener">Launch tool</a>
+            <a class="tl-link" href="https://..." target="_blank" rel="noopener">About and how to cite</a>
+          </div>
+        </div>
+      </article>
+
+     Status label options: tl-live (Live), tl-beta (Beta), tl-soon (Coming soon).
+-->

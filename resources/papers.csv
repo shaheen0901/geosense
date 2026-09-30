@@ -1,0 +1,86 @@
+﻿paper_id,year,title,theme
+esraz2009impact,2009,"Impact of Roadside Commercialization on Transportation Performance: A Case of Satmosjid Road, Dhaka",Sustainability
+mohammad2010compact,2010,"Compact Township As The Conceptual Planning Approach: To Rural Settlement Development In Bangladesh (A Case Study Of Putia Union, Shibpur Upazila, Narshingdi District)",Sustainability
+islam2011,2011,A state of art review on internal curing of concrete and its prospect for Bangladesh,Sustainability
+rahman2012disaster,2012,Disaster as an Opportunity to Enhance Community Resilience: Lesson Learnt from Chilean Coast,Sustainability
+rahman2012overview,2012,An Overview on Rapid Urbanization and Induced Disaster Risk Factors in Bangladesh,Environmental Health
+ahmed2013simulating,2013,"Simulating land cover changes and their impacts on land surface temperature in Dhaka, Bangladesh",Environmental Health
+rahman2013coastal,2013,"Coastal community resilience to tsunami: a study on planning capacity and social capacity, Dichato, Chile",Sustainability
+rahman2013decentralization,2013,Decentralization in Urban Land-Use Planning in Bangladesh: Rationality of the Scene Behind a Screen,Sustainability
+ahmed2014landslide,2014,"Landslide Inventory Report of Chittagong Metropolitan Area, Bangladesh",Environmental Health
+b2014social,2014,"Social Survey Report on Landslide Vulnerability in Chittagong Metropolitan Area, Bangladesh",Environmental Health
+rahman2015disaster,2015,Disaster Management and City Resilience,Environmental Health
+ahmed2016landslide,2016,"From Landslide Hazard Assessment to Early Warning System: A Case Study of Chittagong Metropolitan Area, Bangladesh",Environmental Health
+eugene2016online,2016,Online parameterization for WOFOST for United States using open geospatial standards,Sustainability
+kang2016study,2016,Study of the vegetation index-meteorological factor correlation adjusted by accumulated growing degree days,Sustainability
+lin2016review,2016,A review of remote sensing in flood assessment,Environmental Health
+rahman2016comparison,2016,Comparison of selected noise reduction techniques for MODIS daily NDVI: An empirical analysis on corn and soybean,Sustainability
+rahman2016landslide,2016,Landslide Inventory in an Urban Setting in the Context of Chittagong Metropolitan Area Bangladesh,Environmental Health
+shrestha2016regression,2016,Regression based corn yield assessment using MODIS based daily ndvi in iowa state,Sustainability
+eugene2017performance,2017,Performance improvement on a Web Geospatial service for the remote sensing flood-induced crop loss assessment web application using vector tiling,Sustainability
+hu2017developing,2017,Developing geospatial Web service and system for SMAP soil moisture monitoring,Sustainability
+kafy2017exploring,2017,Exploring the association of land cover changes and landslides in the Chittagong hill tracts (CHT): A remote sensing perspective,Environmental Health
+lin2017extract,2017,Extract flood duration from Dartmouth Flood Observatory flood product,Environmental Health
+rahman2017agriculture,2017,Agriculture Flood Mapping with Soil Moisture Active Passive (SMAP) Data: A Case of 2016 Louisiana Flood,Sustainability
+rahman2017landslide,2017,Landslide initiation and runout susceptibility modeling in the context of hill cutting and rapid urbanization: a combined approach of weights of evidence and spatial multi-criteria,Environmental Health
+rahman2017role,2017,The role of big data in disaster management,Environmental Health
+rahman2017state,2017,The state of the art of spaceborne remote sensing in flood management,Environmental Health
+shrestha2017crop,2017,Crop Fraction Layer (CFL) datasets derived through MODIS and LandSat for the Continental US from,Sustainability
+zhang2017integrating,2017,Integrating OGC Web Processing Service with cloud computing environment for Earth Observation data,Sustainability
+ahmed2018developing_agu,2018,"Developing a Landslide Early Warning System for Chittagong City, Bangladesh",Environmental Health
+ahmed2018developing_ijgi,2018,"Developing a dynamic web-GIS based landslide early warning system for the Chittagong metropolitan area, Bangladesh",Environmental Health
+lin2018using,2018,Using machine learning approach to evaluate the PM2. 5 concentrations in china from 1998 to 2016,Environmental Health
+rahman2018classification,2018,Classification of cities in Bangladesh based on remote sensing derived spatial characteristics,Sustainability
+rahman2018clustering,2018,Clustering Indian Ocean Tropical Cyclone Tracks by the Standard Deviational Ellipse,Environmental Health
+rahman2018impact,2018,Impact of climate change on soil salinity: a remote sensing based investigation in coastal Bangladesh,Sustainability
+sammonds2018developing,2018,"Developing a Landslide Early Warning System for the Rohingya Refugees in Cox's Bazar, Bangladesh",Environmental Health
+yu2018land_agu,2018,Land Use/Land Cover Classification and Change Analysis for Ganges River Basin from 2000 to 2010,Sustainability
+yu2018land_gee,2018,Land use and land cover classification for Bangladesh 2005 on google earth engine,Sustainability
+ahmed2019dynamic,2019,"A Dynamic Landslide Early Warning System for the Rohingya Refugees and Host Communities in Cox's Bazar, Bangladesh",Environmental Health
+lin2019building,2019,Building near-real-time MODIS data fusion workflow to support agricultural decision-making applications,Sustainability
+lin2019improvement,2019,Improvement and Validation of NASA/MODIS NRT Global Flood Mapping,Environmental Health
+qian2019crop,2019,Crop Growth Condition Assessment at County Scale Based on Heat-Aligned Growth Stages,Sustainability
+rahman2019comparison,2019,Comparison Between Directional Distribution of Observed and Forecasted Trajectories of Hurricane in North Atlantic Basin,Environmental Health
+rahman2019crop,2019,Crop field boundary delineation using historical crop rotation pattern,Sustainability
+rahman2019prediction,2019,Prediction of Field Level Crop Types Using Markov Chain Modeling on Crop Rotation Pattern,Sustainability
+rahman2019rapid,2019,Rapid Flood Progress Monitoring in Cropland with NASA SMAP,Sustainability
+rahman2019season,2019,In-Season Major Crop-Type Identification for US Cropland from Landsat Images Using Crop-Rotation Pattern and Progressive Data Classification,Sustainability
+rahman2019tropical,2019,Tropical cyclone hazard to remote home for the Rohingya at Bhasan Char in Bangladesh,Environmental Health
+tang2019spatial,2019,Spatial--temporal landscape pattern change under rapid urbanization,Sustainability
+yu2019calibration,2019,Calibration of Crop Growth Simulation Model for Irrigated Cropland Using Remote Sensing Derived Leaf Area Index,Sustainability
+yu2019full,2019,Full stack web development of a geospatial information service system for intelligently irrigated agriculture,Sustainability
+yu2019selection,2019,Selection of landsat 8 OLI band combinations for land use and land cover classification,Sustainability
+zhang2019cloud,2019,Cloud environment for disseminating NASS cropland data layer,Sustainability
+zhao2019relationship,2019,Relationship between soil moisture and crop yield in America during a drought,Sustainability
+ahmed2020application,2020,"Application of geospatial technologies in developing a dynamic landslide early warning system in a humanitarian context: the Rohingya refugee crisis in Cox’s Bazar, Bangladesh",Environmental Health
+kafy2020modelling,2020,"Modelling future land use land cover changes and their impacts on land surface temperatures in Rajshahi, Bangladesh",Environmental Health
+kafy2020prediction,2020,"Prediction of seasonal urban thermal field variance index using machine learning algorithms in Cumilla, Bangladesh",Environmental Health
+rabby2020evaluating,2020,"Evaluating the Effects of Digital Elevation Models in Landslide Susceptibility Mapping in Rangamati District, Bangladesh",Environmental Health
+rahman2020systematic,2020,A Systematic Review on Case Studies of Remote-Sensing-Based Flood Crop Loss Assessment,Sustainability
+yu2020fishpond,2020,Fishpond Mapping by Spectral and Spatial-Based Filtering on Google Earth Engine: A Case Study in Singra Upazila of Bangladesh,Sustainability
+ali2021public,2021,Public Perceptions about COVID-19 Vaccines: Policy Implications from US Spatiotemporal Sentiment Analytics,Public Health
+patel2021covid,2021,Covid-19 digital Contact-tracing: a doorway to well-being or a backdoor to security vulnerabilities?,Public Health
+rahman2021machine,2021,"Machine learning on the COVID-19 pandemic, human mobility and air quality: A review",Public Health
+rahman2021remote,2021,Remote sensing based rapid assessment of flood crop damage using novel disaster vegetation damage index (DVDI),Sustainability
+shrestha2021flood,2021,Flood Monitoring and Crop Damage Assessment,Sustainability
+al2022impact,2022,"Impact on Land Surface Temperature and Urban Heat Island, Due to Land Use/Land Cover Change in Dhaka Metropolitan Area, Using Remote Sensing and GIS Techniques",Environmental Health
+rahman2022assessing,2022,"Assessing Social Vulnerability to Landslide Disasters in Chittagong City, Bangladesh",Environmental Health
+shekhar2022leading,2022,Are leading urban centers predisposed to global risks-An analysis of the global south from COVID-19 perspective,Public Health
+meenar2023urban,2023,"“The urban poor and vulnerable are hit hardest by the heat”: a heat equity lens to understand community perceptions of climate change, urban heat islands, and green infrastructure",Environmental Health
+rahman2023pandemic,2023,Pandemic vulnerability index of US cities: A hybrid knowledge-based and data-driven approach,Public Health
+roy2023determining,2023,"Determining synergies and trade-offs between adaptation, mitigation and development in coastal socio-ecological systems in Bangladesh",Sustainability
+elani2024adult,2024,Adult Dental Plan Availability in the ACA Health Insurance Marketplaces,Public Health
+elani2024availability,2024,"Availability Of Adult Dental Plans In The Affordable Care Act Marketplaces, 2016--23",Public Health
+ishtiaque2024overcoming,2024,Overcoming barriers to climate-smart agriculture in South Asia,Sustainability
+rahman2024dental,2024,Dental clinic deserts in the US: spatial accessibility analysis,Public Health
+rahman2024mapping,2024,Mapping Dental Deserts: Assessing Geographic Access to Dental Facilities in the United States,Public Health
+rahman2024unveiling,2024,Unveiling environmental justice in two US cities through greenspace accessibility and visible greenness exposure,Environmental Health
+cuccia2025wildfire,2025,Wildfire Impacts on New Orleans Air Quality: October 2024,Environmental Health
+mohamed2025traffic,2025,"Traffic Impacts on Local Air Quality of the Claiborne Corridor in New Orleans, LA",Environmental Health
+mukherjee2025spatial,2025,Spatial Estimation and Identification of Soil Lead Concentration for Select Parks in New Orleans,Environmental Health
+oral2025high,2025,"High Activity Urban Event Impacts Local Air Quality of the Claiborne Corridor in New Orleans, LA",Environmental Health
+rahman2025geographic,2025,Geographic Access to Dental Specialists in the United States,Public Health
+rahman2025mapping,2025,Mapping Urban and Peri-Urban Farming in New Jersey: A Multi-Method Evaluation of OBIA and Deep Learning Approaches,Sustainability
+rahman2026driving,2026,Driving and public transit barriers to dental care in the United States,Public Health
+labibsocial,2018,Social Media Analytics in understanding the,Environmental Health
+rahmanSprawl,2012,Quantifying Urban Form - Compactness versus Sprawl: An Analysis of Chittagong and Sylhet Metropolitan Cities,Sustainability

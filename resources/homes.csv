@@ -1,0 +1,7 @@
+﻿home,institution,city,country,lat,lon,period,career_order,label,color
+BUET,Bangladesh University of Engineering and Technology,Dhaka,Bangladesh,23.7265,90.3925,–2015,1,BUET,#7D1A1E
+UACh,Universidad Austral de Chile,Valdivia,Chile,-39.8045,-73.2525,2012–2013 (master's),2,UACh,#5999C2
+GMU,George Mason University,"Fairfax, VA",USA,38.8316,-77.3075,2015–2019,3,GMU,#005239
+NJCU,New Jersey City University,"Jersey City, NJ",USA,40.7085,-74.086,2020–2023,4,NJCU,#00857C
+Harvard,Harvard School of Dental Medicine,"Boston, MA",USA,42.3358,-71.1044,2023–2026,5,Harvard,#A51C30
+LSUHSC,LSU Health Sciences Center New Orleans,"New Orleans, LA",USA,29.9563,-90.0818,2024–present,6,LSUHSC,#461D7C
