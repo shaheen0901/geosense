@@ -27,6 +27,25 @@
     ["Jersey City",  -74.08, 40.73,  0.30, -0.20]
   ];
 
+  // ---- Which U.S. study sites appear on which scanned map ----
+  // After each map is scanned, only the sites listed for it are shown. A map with no sites shows none.
+  // To add a site later, put its exact name (as written in SITES above) in the matching list.
+  //   lst = land surface temperature, no2 = nitrogen dioxide, pm = fine particulate matter (PM2.5)
+  const MAP_SITES = {
+    lst: [],
+    no2: [],
+    pm:  ["New Orleans"]
+  };
+
+  // ---- Nationwide studies: one labeled point near the center of the contiguous U.S. ----
+  // [label, longitude, latitude]. Shown after the matching map is scanned, with its label so it
+  // reads as a U.S.-wide study rather than a site in Kansas.
+  const MAP_STUDIES = {
+    lst: [["Dew point study (U.S.-wide)", -98.58, 39.83]],
+    no2: [],
+    pm:  []
+  };
+
   // ---- Colors ----
   const C = { bg: "#3C1053", ocean: "#4A1D66", land: "186,168,212", usa: "253,222,110", glow: "#FDD023", text: "#EFEAF5", muted: "#B4A6C6" };
   const RAMP = [[44,123,182],[171,217,233],[255,255,191],[253,174,97],[215,25,28]];      // temperature
@@ -78,15 +97,15 @@
 
   // ---- Map layers, scanned one after another ----
   const LAYERS = [
-    { name: "Land surface temperature",       low: "Cooler", high: "Warmer", stops: RAMP,     scan: 7500, hold: 1500 },
-    { name: "Nitrogen dioxide (NO\u2082)",   low: "Lower",  high: "Higher", stops: RAMP_NO2, scan: 6500, hold: 1500 },
-    { name: "Fine particulate matter (PM2.5)", low: "Lower",  high: "Higher", stops: RAMP_PM,  scan: 6500, hold: 2500 }
+    { key: "lst", name: "Land surface temperature",       low: "Cooler", high: "Warmer", stops: RAMP,     scan: 6500, hold: 1200 },
+    { key: "no2", name: "Nitrogen dioxide (NO\u2082)",   low: "Lower",  high: "Higher", stops: RAMP_NO2, scan: 5500, hold: 1000 },
+    { key: "pm",  name: "Fine particulate matter (PM2.5)", low: "Lower",  high: "Higher", stops: RAMP_PM,  scan: 5500, hold: 1800 }
   ];
   LAYERS.forEach(L => L.color = rampOf(L.stops));
   const MAPS = LAYERS.reduce((sum, L) => sum + L.scan + L.hold, 0);
 
   // ---- Timeline (ms) ----
-  const T = { bd: 3500, turn: 4500, us: 3500, zoom: 1500, maps: MAPS, fade: 1000 };
+  const T = { bd: 2800, turn: 3500, us: 2800, zoom: 1200, maps: MAPS, fade: 1000 };
   let acc = 0; const at = {}; for (const k in T) { at[k] = acc; acc += T[k]; } const TOTAL = acc;
   const ease = t => t < .5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
   const clamp = t => Math.max(0, Math.min(1, t));
@@ -223,14 +242,27 @@
       satellite(sx, sy, s, 1, Math.atan2(mh, -mw * .14) - Math.PI / 2);
     }
 
-    // study sites in the U.S. appear after each completed pass
+    // study sites relevant to this map (see MAP_SITES) appear after its pass is complete
     if (p >= 1) {
       const a = clamp((local - L.scan) / 500);
-      SITES.filter(s => s[1] < -60).forEach(([, lo, la]) => {
+      SITES.filter(s => s[1] < -60 && (MAP_SITES[L.key] || []).includes(s[0])).forEach(([, lo, la]) => {
         const [x, y] = toXY(lo, la);
         ctx.strokeStyle = "rgba(60,16,83," + a + ")"; ctx.lineWidth = 2;
         ctx.fillStyle = "rgba(239,234,245," + a + ")";
         ctx.beginPath(); ctx.arc(x, y, Math.max(3.5, W * .006), 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      });
+      // nationwide studies: point plus a label on a dark tag so it stays readable over the map colors
+      (MAP_STUDIES[L.key] || []).forEach(([text, lo, la]) => {
+        const [x, y] = toXY(lo, la), r = Math.max(3.5, W * .006), tfs = Math.max(10, W * .016);
+        ctx.save(); ctx.globalAlpha *= a;
+        ctx.strokeStyle = "#3C1053"; ctx.lineWidth = 2; ctx.fillStyle = "#EFEAF5";
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        ctx.font = "600 " + tfs + "px 'Public Sans', 'Segoe UI', Arial, sans-serif";
+        const tw = ctx.measureText(text).width, px = tfs * .45, bx = x + r + 6, bh = tfs * 1.6;
+        ctx.fillStyle = "rgba(60,16,83,.85)";
+        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(bx, y - bh / 2, tw + px * 2, bh, 4) : ctx.rect(bx, y - bh / 2, tw + px * 2, bh); ctx.fill();
+        label(text, bx + px, y, tfs, C.text);
+        ctx.restore();
       });
     }
 

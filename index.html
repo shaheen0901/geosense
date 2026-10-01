@@ -28,59 +28,82 @@
   <body>
     <header>
       <nav class="wrap nav" aria-label="Main">
-        <a class="brand" href="#home" aria-label="GeoSENSE Lab, home"
-          ><span aria-hidden="true"
-            >Ge<svg
-              class="globe-o"
-              viewBox="0 0 62 100"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                d="M4 44 Q34 4 66 40"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-dasharray="3 4"
-                opacity=".55"
-              />
-              <circle
-                cx="31"
-                cy="73"
-                r="21.5"
-                fill="#6B45A0"
-                stroke="currentColor"
-                stroke-width="11"
-              />
-              <ellipse
-                cx="31"
-                cy="73"
-                rx="16"
-                ry="6"
-                fill="none"
-                stroke="currentColor"
-                stroke-opacity=".45"
-                stroke-width="2"
-              />
-              <ellipse
-                cx="31"
-                cy="73"
-                rx="7"
-                ry="16"
-                fill="none"
-                stroke="currentColor"
-                stroke-opacity=".45"
-                stroke-width="2"
-              />
-              <circle cx="37" cy="67" r="3.2" fill="#FDD023" />
-              <g transform="translate(50 26.7) rotate(28)">
-                <rect x="-14" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
-                <rect x="5" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
-                <rect x="-4" y="-4" width="8" height="8" fill="currentColor" />
-              </g></svg
-            >SENSE Lab</span
-          ><small>LSU Health New Orleans School of Public Health</small></a
-        >
+        <div class="brand-group">
+          <a
+            class="partner-logo"
+            href="https://www.lsuhsc.edu/"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="images/lsuhsc.png" alt="LSU Health New Orleans" />
+          </a>
+          <span class="brand-divider" aria-hidden="true"></span>
+          <a class="brand" href="#home" aria-label="GeoSENSE Lab, home"
+            ><span aria-hidden="true"
+              >Ge<svg
+                class="globe-o"
+                viewBox="0 0 62 100"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M4 44 Q34 4 66 40"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-dasharray="3 4"
+                  opacity=".55"
+                />
+                <circle
+                  cx="31"
+                  cy="73"
+                  r="21.5"
+                  fill="#6B45A0"
+                  stroke="currentColor"
+                  stroke-width="11"
+                />
+                <ellipse
+                  cx="31"
+                  cy="73"
+                  rx="16"
+                  ry="6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-opacity=".45"
+                  stroke-width="2"
+                />
+                <ellipse
+                  cx="31"
+                  cy="73"
+                  rx="7"
+                  ry="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-opacity=".45"
+                  stroke-width="2"
+                />
+                <circle cx="37" cy="67" r="3.2" fill="#FDD023" />
+                <g transform="translate(50 26.7) rotate(28)">
+                  <rect
+                    x="-14"
+                    y="-2.6"
+                    width="9"
+                    height="5.2"
+                    fill="#A39AAC"
+                  />
+                  <rect x="5" y="-2.6" width="9" height="5.2" fill="#A39AAC" />
+                  <rect
+                    x="-4"
+                    y="-4"
+                    width="8"
+                    height="8"
+                    fill="currentColor"
+                  />
+                </g></svg
+              >SENSE Lab</span
+            ><small>School of Public Health</small></a
+          >
+        </div>
         <button class="menu-btn" aria-expanded="false" aria-controls="menu">
           Menu
         </button>
@@ -93,7 +116,6 @@
           <li><a href="#people">People</a></li>
           <li><a href="#news">News</a></li>
           <li><a href="#media">In the Media</a></li>
-
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -178,8 +200,9 @@
               &amp; <b class="acr">E</b>pidemiology
             </p>
             <p class="lede">
-              Tracking how heat, flooding, and environmental change affect human
-              health, from satellite to community.
+              Using remote sensing, GeoAI, and GIS to map how heat, air
+              pollution, and natural hazards affect human health, from satellite
+              to community.
             </p>
             <p><a class="btn" href="#research">Explore our research</a></p>
           </div>
@@ -188,18 +211,18 @@
           <div class="wrap">
             <h2>About the lab</h2>
             <p>
-              Welcome to the GeoSENSE Lab, based in the Department of
-              Environmental Health, Climate, and Sustainability at the School of
-              Public Health, LSU Health Sciences Center in New Orleans.
+              Welcome to the GeoSENSE Lab, based in the Environmental Health,
+              Climate, and Sustainability program at the School of Public
+              Health, LSU Health New Orleans.
             </p>
             <p>
               We are an interdisciplinary team working where earth observation
               meets public health. By combining satellite imagery, geospatial
-              data, health records, and machine learning, we build exposure maps
-              and risk assessments that help public health agencies, planners,
-              and communities prepare for a changing climate. Our home on the
-              Gulf Coast shapes our questions: extreme heat, flooding, and
-              disaster risk are daily realities here.
+              data, health data, and GeoAI, we build exposure maps and risk
+              assessments that help public health agencies, planners, and
+              communities prepare for a changing climate. Our home on the Gulf
+              Coast shapes our questions: extreme heat, poor air quality,
+              flooding, and disaster risk are daily realities here.
             </p>
             <p>
               Explore our <a href="#research">research</a>,
@@ -261,7 +284,9 @@
             <div>
               <h3>GeoAI</h3>
               <ul>
-                <li>Machine learning for land cover and environmental mapping</li>
+                <li>
+                  Machine learning for land cover and environmental mapping
+                </li>
                 <li>Deep learning for satellite and aerial image analysis</li>
                 <li>Spatiotemporal modeling of environmental exposures</li>
                 <li>Large-scale processing on high-performance computing</li>
@@ -306,7 +331,12 @@
       <div class="page" id="page-news" data-src="pages/news.html" hidden></div>
 
       <!-- IN THE MEDIA: content lives in pages/media.html -->
-      <div class="page" id="page-media" data-src="pages/media.html" hidden></div>
+      <div
+        class="page"
+        id="page-media"
+        data-src="pages/media.html"
+        hidden
+      ></div>
 
       <!-- CONTACT -->
       <div class="page" id="page-contact" hidden>
@@ -328,9 +358,9 @@
               statement of your research interests.
             </p>
             <p>
-              <strong>GeoSENSE Lab</strong><br />Department of Environmental
-              Health, Climate, and Sustainability<br />School of Public Health,
-              LSU Health Sciences Center<br />New Orleans, Louisiana
+              <strong>GeoSENSE Lab</strong><br />Environmental Health, Climate,
+              and Sustainability Program<br />School of Public Health, LSU
+              Health New Orleans<br />New Orleans, Louisiana
             </p>
             <p><a href="mailto:mrahm8@lsuhsc.edu">mrahm8@lsuhsc.edu</a></p>
           </div>

@@ -26,6 +26,7 @@
   var PALETTE = ['#1F6F6B', '#7A3B69', '#B7791F', '#2F5D8A', '#A23E48', '#5B7F2A', '#6B4FA0', '#8A5A2B', '#0E7490', '#9D174D'];
   var PERSON_PX = 30;          // person icon size
   var STACK_PX = 34;           // vertical spacing between projects at the same location
+  var SMALL = window.innerWidth <= 520;   // phone-sized map: compact panels, clustered circles
 
   var map = L.map('map', { worldCopyJump: true, scrollWheelZoom: false, zoomSnap: 0.25 }).setView([30, 0], 2);
   // Esri Light Gray Canvas: free, no API key required
@@ -49,7 +50,9 @@
   }
 
   /* Team panel */
-  var DEFAULT_INFO = '<h4>Project teams</h4><p class="pm-hint">Hover over a project circle to see its investigators and collaborators. Click or tap it to zoom to the team; click empty map space to reset.</p>';
+  var DEFAULT_INFO = SMALL
+    ? '<p class="pm-hint">Tap a project circle to see its team. Tap empty map space to reset.</p>'
+    : '<h4>Project teams</h4><p class="pm-hint">Hover over a project circle to see its investigators and collaborators. Click or tap it to zoom to the team; click empty map space to reset.</p>';
   var info = L.control({ position: 'topright' });
   info.onAdd = function () {
     this._div = L.DomUtil.create('div', 'pm-box pm-info');
@@ -61,16 +64,18 @@
   info.addTo(map);
 
   /* Legend */
-  var legend = L.control({ position: 'bottomleft' });
+  var legend = L.control({ position: SMALL ? 'topleft' : 'bottomleft' });   // phones: under the zoom buttons, clear of the credits line
   legend.onAdd = function () {
     var d = L.DomUtil.create('div', 'pm-box pm-legend');
-    d.innerHTML =
+    L.DomEvent.disableClickPropagation(d);
+    // On phones the legend starts folded so it does not cover the map; tap "Legend" to open it.
+    d.innerHTML = '<details' + (SMALL ? '' : ' open') + '><summary>Legend</summary>' +
       '<div><span class="pm-circle"></span>Current project</div>' +
       '<div><span class="pm-circle" style="opacity:.55"></span>Past project</div>' +
       '<div><span style="width:16px;height:16px;display:inline-block">' + personSvg('#5E5667') + '</span>Investigator</div>' +
       '<div><span style="width:16px;height:16px;display:inline-block">' + personSvg('#5E5667', true) + '</span>Collaborator</div>' +
       '<div><span class="pm-line"></span>Link to investigator</div>' +
-      '<div><span class="pm-line col"></span>Link to collaborator</div>';
+      '<div><span class="pm-line col"></span>Link to collaborator</div></details>';
     return d;
   };
   legend.addTo(map);
@@ -178,7 +183,7 @@
       if (!isNaN(la) && !isNaN(lo)) pts.push([la, lo]);
     });
     map.fitBounds(L.latLngBounds(pts).pad(0.25), {
-      paddingTopLeft: [60, 80], paddingBottomRight: [window.innerWidth > 600 ? 330 : 60, 80], maxZoom: 9
+      paddingTopLeft: [SMALL ? 30 : 60, SMALL ? 170 : 80], paddingBottomRight: [window.innerWidth > 600 ? 330 : 30, SMALL ? 30 : 80], maxZoom: 9
     });
   }
 
@@ -200,7 +205,12 @@
       var s = stacks.filter(function (st) { return st.pt.distanceTo(pt) < 40; })[0];
       if (s) s.list.push({ p: p, pt: pt }); else stacks.push({ pt: pt, list: [{ p: p, pt: pt }] });
     });
-    function half(st) { return (st.list.length - 1) / 2 * STACK_PX + STACK_PX / 2; }
+    // On phones, projects at the same spot form a small ring instead of a tall column.
+    function ringR(n) { return n < 2 ? 0 : Math.max(17, n * 30 / (2 * Math.PI)); }
+    function half(st) {
+      return SMALL ? ringR(st.list.length) + 15
+                   : (st.list.length - 1) / 2 * STACK_PX + STACK_PX / 2;
+    }
     for (var pass = 0; pass < 20; pass++) {
       var moved = false;
       stacks.sort(function (a, b) { return a.pt.y - b.pt.y; });
@@ -220,7 +230,12 @@
       var n = st.list.length;
       st.list.forEach(function (e, i) {
         var p = e.p;
-        p.offset = [st.pt.x - e.pt.x, st.pt.y - e.pt.y + (i - (n - 1) / 2) * STACK_PX];
+        if (SMALL) {
+          var r = ringR(n), ang = Math.PI + i * 2 * Math.PI / n;
+          p.offset = [st.pt.x - e.pt.x + r * Math.cos(ang), st.pt.y - e.pt.y + r * Math.sin(ang)];
+        } else {
+          p.offset = [st.pt.x - e.pt.x, st.pt.y - e.pt.y + (i - (n - 1) / 2) * STACK_PX];
+        }
         projMarkers[p.id].setIcon(L.divIcon({
           className: 'pm-proj ' + statusOf(p) + (active && active.id === p.id ? ' active' : ''),
           html: '<div class="pm-circle" style="background:' + p.color + '"></div>' +

@@ -43,4 +43,11 @@
   .pm-line.col { border-top-style: dashed; }
   .pm-error { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
               padding: 1rem; text-align: center; background: #EEEBF2; z-index: 1000; }
-  @media (max-width: 520px) { .pm-info { width: 200px; max-height: 45vh; } .pm-label { display: none; } }
+  .pm-legend summary { cursor: pointer; font-weight: 600; }
+  .pm-legend details[open] summary { margin-bottom: .25rem; }
+  @media (max-width: 520px) {
+    .pm-info { width: 170px; max-height: 45vh; }
+    .pm-box { font-size: 12px; padding: .4rem .55rem; }
+    .pm-label { display: none; }
+    .leaflet-control-attribution { font-size: 9px; }
+  }

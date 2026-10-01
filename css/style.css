@@ -162,3 +162,15 @@ footer a { color: #fff; }
 body { color: #2B2230; }
 .member .bio { color: #2B2230; }
 .page-body h2, .page-body h3, .page-body h4, .about h2, .about h3 { color: var(--ink); }
+
+/* Header: GeoSENSE name + LSU Health New Orleans logo */
+.brand-group { display: flex; align-items: center; gap: 1rem; }
+.brand-divider { width: 1px; height: 2.5rem; background: var(--line); }
+.partner-logo img { display: block; height: 2.75rem; width: auto; }
+@media (max-width: 700px) {
+  .partner-logo img { height: 2rem; }
+  .brand-divider { height: 1.75rem; }
+}
+@media (max-width: 480px) {
+  .brand-divider, .partner-logo { display: none; }
+}

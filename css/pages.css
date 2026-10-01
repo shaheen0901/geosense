@@ -168,7 +168,7 @@
 
   @media (max-width: 640px) {
     .proj-item { grid-template-columns: 1fr; gap: .6rem; }
-    .proj-map iframe { height: 340px; }
+    .proj-map iframe { height: 440px; }
   }
 
 /* ============================== Tools (tools.html) ============================== */
