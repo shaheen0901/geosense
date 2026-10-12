@@ -177,7 +177,7 @@
         canvas.height = h * dpr;
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#3C1053";
+      ctx.fillStyle = "#461D7C";
       ctx.fillRect(0, 0, w, h);
       // use a detailed layer once its dots are big enough to read
       const on = DETAIL.filter((L) => L.m.step * scale() * kx() >= 2.4);

@@ -47,7 +47,7 @@
   };
 
   // ---- Colors ----
-  const C = { bg: "#3C1053", ocean: "#4A1D66", land: "186,168,212", usa: "253,222,110", glow: "#FDD023", text: "#EFEAF5", muted: "#B4A6C6" };
+  const C = { bg: "#461D7C", ocean: "rgba(0,0,0,.28)", land: "186,168,212", usa: "253,222,110", glow: "#FDD023", text: "#EFEAF5", muted: "#B4A6C6" };
   const RAMP = [[44,123,182],[171,217,233],[255,255,191],[253,174,97],[215,25,28]];      // temperature
   const RAMP_NO2 = [[45,30,62],[140,41,129],[222,73,104],[254,159,109],[252,253,191]];  // nitrogen dioxide
   const RAMP_PM = [[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]];        // PM2.5
@@ -129,7 +129,7 @@
   }
   function satellite(x, y, s, a, angle) {
     ctx.save(); ctx.globalAlpha *= a; ctx.translate(x, y); ctx.rotate(angle || 0);
-    ctx.fillStyle = "#A39AAC"; ctx.fillRect(-s * 2.2, -s * .35, s * 1.5, s * .7); ctx.fillRect(s * .7, -s * .35, s * 1.5, s * .7);
+    ctx.fillStyle = "#999999"; ctx.fillRect(-s * 2.2, -s * .35, s * 1.5, s * .7); ctx.fillRect(s * .7, -s * .35, s * 1.5, s * .7);
     ctx.fillStyle = "#EFEAF5"; ctx.fillRect(-s * .55, -s * .55, s * 1.1, s * 1.1);
     ctx.restore();
   }
@@ -247,7 +247,7 @@
       const a = clamp((local - L.scan) / 500);
       SITES.filter(s => s[1] < -60 && (MAP_SITES[L.key] || []).includes(s[0])).forEach(([, lo, la]) => {
         const [x, y] = toXY(lo, la);
-        ctx.strokeStyle = "rgba(60,16,83," + a + ")"; ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(70,29,124," + a + ")"; ctx.lineWidth = 2;
         ctx.fillStyle = "rgba(239,234,245," + a + ")";
         ctx.beginPath(); ctx.arc(x, y, Math.max(3.5, W * .006), 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       });
@@ -255,11 +255,11 @@
       (MAP_STUDIES[L.key] || []).forEach(([text, lo, la]) => {
         const [x, y] = toXY(lo, la), r = Math.max(3.5, W * .006), tfs = Math.max(10, W * .016);
         ctx.save(); ctx.globalAlpha *= a;
-        ctx.strokeStyle = "#3C1053"; ctx.lineWidth = 2; ctx.fillStyle = "#EFEAF5";
+        ctx.strokeStyle = "#461D7C"; ctx.lineWidth = 2; ctx.fillStyle = "#EFEAF5";
         ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
         ctx.font = "600 " + tfs + "px 'Public Sans', 'Segoe UI', Arial, sans-serif";
         const tw = ctx.measureText(text).width, px = tfs * .45, bx = x + r + 6, bh = tfs * 1.6;
-        ctx.fillStyle = "rgba(60,16,83,.85)";
+        ctx.fillStyle = "rgba(70,29,124,.85)";
         ctx.beginPath(); ctx.roundRect ? ctx.roundRect(bx, y - bh / 2, tw + px * 2, bh, 4) : ctx.rect(bx, y - bh / 2, tw + px * 2, bh); ctx.fill();
         label(text, bx + px, y, tfs, C.text);
         ctx.restore();

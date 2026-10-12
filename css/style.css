@@ -1,8 +1,8 @@
 /* Colour theme: LSU Health New Orleans purple and gold.
- * Colours: LSU Health New Orleans official purple #461D7C and gold #FDD023, with corporate purple #3C1053. */
+ * Colours: LSU Health New Orleans official purple #461D7C and gold #FDD023, black #000000 and 50% gray #999999 (LSUHNO Graphic Standards Manual, 2017). */
 /* GeoSENSE Lab styles */
 :root {
-  --ink: #3C1053; --paper: #F7F5F9; --panel: #ECE7F2; --water: #461D7C;
+  --ink: #461D7C; --paper: #F7F5F9; --panel: #ECE7F2; --water: #461D7C;
   --muted: #5E5667; --line: #D6CEDF; --glow: #FDD023;
   --display: "Archivo", "Arial Narrow", Arial, sans-serif;
   --body: "Public Sans", "Segoe UI", Arial, sans-serif;
@@ -11,7 +11,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper) url("../images/contours-light.svg") 0 0 / 1500px repeat; color: var(--ink); font: 1.0625rem/1.65 var(--body); }
 a { color: var(--water); text-underline-offset: 3px; }
-a:hover { color: var(--ink); }
+a:hover { color: #000000; }
 :focus-visible { outline: 3px solid var(--water); outline-offset: 3px; }
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 1.5rem; }
 h1, h2, h3 { font-family: var(--display); font-stretch: 112%; line-height: 1.1; margin: 0 0 .75rem; }
@@ -26,7 +26,7 @@ header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom:
 .brand small { display: block; font-family: var(--body); font-weight: 400; font-size: .78rem; color: var(--muted); }
 .nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
 .nav ul a { color: var(--ink); text-decoration: none; font-size: 1rem; padding: .3rem 0; border-bottom: 2px solid transparent; }
-.nav ul a:hover { color: var(--water); }
+.nav ul a:hover { color: var(--water); border-bottom-color: #FDD023; }
 .nav ul a[aria-current="page"] { color: var(--water); border-bottom-color: var(--water); }
 .menu-btn { display: none; background: none; border: 1px solid var(--ink); color: var(--ink); font: inherit; padding: .35rem .75rem; border-radius: 4px; cursor: pointer; }
 
@@ -46,7 +46,7 @@ header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom:
 .btn.alt { background: transparent; color: #fff; border: 1.5px solid #fff; }
 .btn.alt:hover { background: #fff; color: var(--ink); }
 .btn.dark { background: var(--ink); color: #fff; }
-.btn.dark:hover { background: var(--water); color: #fff; }
+.btn.dark:hover { background: #000000; color: #fff; }
 
 /* Pages */
 .page[hidden] { display: none; }
@@ -84,12 +84,12 @@ header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom:
 .pubmap canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
 .pins { position: absolute; inset: 0; }
 .pin { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; padding: 0; border-radius: 50%; cursor: pointer;
-  background: var(--c); border: 2px solid #3C1053; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 35%, transparent);
+  background: var(--c); border: 2px solid #461D7C; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 35%, transparent);
   transition: transform .15s, opacity .15s; }
 .pin:hover, .pin:focus-visible { transform: scale(1.45); z-index: 2; }
 .pin.dim { opacity: .15; }
 .pop { position: absolute; z-index: 5; width: min(20rem, 80%); background: #fff; color: var(--ink); border-radius: 6px; padding: 1rem 1.1rem;
-  box-shadow: 0 10px 30px rgba(60,16,83,.3); font-size: .9rem; line-height: 1.5; }
+  box-shadow: 0 10px 30px rgba(70,29,124,.3); font-size: .9rem; line-height: 1.5; }
 .pop h4 { font-family: var(--display); font-stretch: 112%; font-size: 1rem; line-height: 1.25; margin: .45rem 0 .35rem; }
 .pop p { margin: 0 0 .6rem; }
 .pop .pop-meta { color: var(--muted); font-size: .82rem; }
@@ -144,7 +144,7 @@ footer a { color: #fff; }
 /* Profile icon links (People page) */
 .profile-links { display: flex; gap: 1rem; margin-top: .5rem; }
 .profile-links a { font-size: 1.5rem; color: var(--water); text-decoration: none; }
-.profile-links a:hover { color: var(--ink); }
+.profile-links a:hover { color: #000000; }
 .member .profile-links { margin-top: .6rem; }
 
 /* Collaborators (People page) */
@@ -152,7 +152,7 @@ footer a { color: #fff; }
 .collaborators { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1rem; }
 .collab { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: center; padding: 1rem; border-radius: 6px;
   background: rgba(255,255,255,.75); border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
-.collab:hover { color: var(--ink); border-color: var(--water); box-shadow: 0 4px 14px rgba(60,16,83,.08); }
+.collab:hover { color: var(--ink); border-color: var(--water); box-shadow: 0 4px 14px rgba(70,29,124,.08); }
 .collab .photo { width: 4.5rem; font-size: 1.2rem; }
 .collab h4 { font-family: var(--display); font-stretch: 112%; font-size: 1rem; margin: 0 0 .2rem; }
 .collab:hover h4 { color: var(--water); }
