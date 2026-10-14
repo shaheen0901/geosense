@@ -272,6 +272,18 @@
     cursor: default;
   }
   .tl-link { font-weight: 600; }
+  /* Whole card opens the tool: the Launch link is stretched over the card.
+     Other links in the card (e.g. "Data, methods and code") sit above it and keep working. */
+  .tl-card { position: relative; transition: box-shadow 0.15s, transform 0.15s; }
+  .tl-card a.tl-btn:not([aria-disabled])::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .tl-card .tl-link { position: relative; z-index: 2; }
+  .tl-card:has(a.tl-btn:not([aria-disabled])):hover {
+    box-shadow: 0 6px 20px rgba(70, 29, 124, 0.18);
+    transform: translateY(-2px);
+  }
+  .tl-card:has(a.tl-btn:not([aria-disabled])):hover .tl-btn { background: #000; }
+  .tl-card a.tl-btn:focus-visible { outline: 3px solid var(--glow); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .tl-card { transition: none; } .tl-card:hover { transform: none !important; } }
   /* Wide screens: rectangular card, preview on the left, text on the right */
   @media (min-width: 760px) {
     .tl-card {
