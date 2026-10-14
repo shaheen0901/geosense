@@ -8,7 +8,11 @@
      WHEN A TOOL GOES LIVE: change the status label from "Coming soon" to "Live" (and the class tl-soon
      to tl-live), swap the preview image for a screenshot of the live tool, and replace the disabled button with the
      Launch link shown in the template.
-     Note: JavaScript placed inside this file does not run, so keep cards plain HTML.  -->
+     Note: JavaScript placed inside this file does not run, so keep cards plain HTML.
+
+     Tools built with React + Vite live in tools/<name>/ (e.g. tools/hrep/) and open in the same tab
+     with href="tools/<name>/". Each tool has a "Back to Tools" link that returns here.
+     tools/hrep/ is updated automatically from the shaheen0901/hrep repository; do not edit it by hand.  -->
 
 <div class="page-head">
   <div class="wrap">
@@ -46,13 +50,7 @@
             <li>U.S. counties</li>
           </ul>
           <div class="tl-actions">
-            <a
-              class="tl-btn"
-              href="https://shaheen0901.github.io/hrep/"
-              target="_blank"
-              rel="noopener"
-              >Launch HREP</a
-            >
+            <a class="tl-btn" href="tools/hrep/">Launch HREP</a>
             <a
               class="tl-link"
               href="https://github.com/shaheen0901/hrep#readme"
@@ -84,7 +82,8 @@
             <li>Coverage</li>
           </ul>
           <div class="tl-actions">
-            <a class="tl-btn" href="https://..." target="_blank" rel="noopener">Launch tool</a>
+            <a class="tl-btn" href="tools/TOOL/">Launch tool</a>
+            (for a tool hosted elsewhere: href="https://..." target="_blank" rel="noopener")
             <a class="tl-link" href="https://..." target="_blank" rel="noopener">About and how to cite</a>
           </div>
         </div>
