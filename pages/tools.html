@@ -14,7 +14,8 @@
      with href="tools/<name>/". Each tool has a "Back to Tools" link that returns here.
      The whole card is clickable: the Launch link (class tl-btn) is stretched over the card in
      css/pages.css. Keep exactly one tl-btn link per card.
-     tools/hrep/ is updated automatically from the shaheen0901/hrep repository; do not edit it by hand.  -->
+     tools/hrep/ and tools/extreme-weather/ are updated automatically from the shaheen0901/hrep and
+     shaheen0901/extreme-weather repositories; do not edit them by hand.  -->
 
 <div class="page-head">
   <div class="wrap">
@@ -59,6 +60,44 @@
               target="_blank"
               rel="noopener"
               >Data, methods and code</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <!-- ===================== Extreme Weather ===================== -->
+      <article class="tl-card">
+        <div class="tl-shot">
+          <img
+            src="images/extreme-weather-screenshot.png"
+            alt="Extreme Weather Analysis tool showing GEV and Gumbel return level curves with 95% confidence bands for New Orleans annual maximum precipitation"
+          />
+          <span class="tl-status tl-beta">Beta</span>
+        </div>
+        <div class="tl-body">
+          <h3>Extreme Weather Analysis</h3>
+          <p class="tl-short">Return levels</p>
+          <p>
+            Estimate how extreme a 10-, 50- or 100-year event could be for
+            rainfall, heat, wind or any other variable. Upload annual maximum
+            or daily data, fit GEV and Gumbel distributions, and compare return
+            levels with bootstrap 95% confidence intervals. Includes a New
+            Orleans rainfall sample; results download as CSV.
+          </p>
+          <ul class="tl-tags">
+            <li>Flooding</li>
+            <li>Extreme heat</li>
+            <li>Extreme value statistics</li>
+            <li>Your own data</li>
+          </ul>
+          <div class="tl-actions">
+            <a class="tl-btn" href="tools/extreme-weather/">Launch tool</a>
+            <a
+              class="tl-link"
+              href="https://github.com/shaheen0901/extreme-weather#readme"
+              target="_blank"
+              rel="noopener"
+              >Methods and code</a
             >
           </div>
         </div>
